@@ -24,6 +24,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         README.md
+        speedsensor.h speedsensor.cpp
+        socsensor.h socsensor.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Can-to-CPP-2025 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

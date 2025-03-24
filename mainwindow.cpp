@@ -17,9 +17,27 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Setup UI. Creates everything done in Qt creator.
     ui->setupUi(this);
+
+    speedSensor = new SpeedSensor(this);
+    connect(speedSensor, &SpeedSensor::speedUpdated, this, &MainWindow::updateSpeed);
+    speedSensor->startReading();
+
+    socSensor = new SOCSensor(this);
+    connect(socSensor, &SOCSensor::socUpdated, this, &MainWindow::updateSOC);
+    socSensor->startReading();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::updateSpeed(int newSpeed)
+{
+    ui->SpeedValue->display(newSpeed); //
+}
+
+void MainWindow::updateSOC(int newSOC)
+{
+    ui->SOCValue->display(newSOC);
 }
