@@ -32,15 +32,6 @@ The project repository is available at .
 - User-friendly interface
 - Readable, maintainable code
 
-## Conventions 
-
-To ensure consistency and maintainability, included is a list of 
-design conventions. Please comment instances where these conventions
-are broken.
-
-- Fonts are set **locally**, meaning they are set for each object, not
-on the main window. 
-
 ## Contributors
 
 Work mainly done by Alex Caldwell, with all other contributions noted
