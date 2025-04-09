@@ -26,6 +26,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         README.md
         speedsensor.h speedsensor.cpp
         socsensor.h socsensor.cpp
+        tempsensor.h tempsensor.cpp
+        mpptinputvoltagesensor.h mpptinputvoltagesensor.cpp
+        mpptoutputvoltagesensor.h mpptoutputvoltagesensor.cpp
+        mpptinputpowersensor.h mpptinputpowersensor.cpp
+        mpptoutputpowersensor.h mpptoutputpowersensor.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Can-to-CPP-2025 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

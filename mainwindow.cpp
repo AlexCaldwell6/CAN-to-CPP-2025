@@ -3,6 +3,7 @@
 
 #include <QPixmap>
 #include <QLabel>
+#include <QString>
 
 /**
  * @brief MainWindow which contains all other UI objects.
@@ -25,6 +26,26 @@ MainWindow::MainWindow(QWidget *parent)
     socSensor = new SOCSensor(this);
     connect(socSensor, &SOCSensor::socUpdated, this, &MainWindow::updateSOC);
     socSensor->startReading();
+
+    tempSensor = new TempSensor(this);
+    connect(tempSensor, &TempSensor::tempUpdated, this, &MainWindow::updateTemp);
+    tempSensor->startReading();
+
+    mpptInputVoltageSensor = new MPPTInputVoltageSensor(this);
+    connect(mpptInputVoltageSensor, &MPPTInputVoltageSensor::inputVoltageUpdated, this, &MainWindow::updateMPPTInputVoltage);
+    mpptInputVoltageSensor->startReading();
+
+    mpptOutputVoltageSensor = new MPPTOutputVoltageSensor(this);
+    connect(mpptOutputVoltageSensor, &MPPTOutputVoltageSensor::outputVoltageUpdated, this, &MainWindow::updateMPPTOutputVoltage);
+    mpptOutputVoltageSensor->startReading();
+
+    mpptInputPowerSensor = new MPPTInputPowerSensor(this);
+    connect(mpptInputPowerSensor, &MPPTInputPowerSensor::inputPowerUpdated, this, &MainWindow::updateMPPTInputPower);
+    mpptInputPowerSensor->startReading();
+
+    mpptOutputPowerSensor = new MPPTOutputPowerSensor(this);
+    connect(mpptOutputPowerSensor, &MPPTOutputPowerSensor::outputPowerUpdated, this, &MainWindow::updateMPPTOutputPower);
+    mpptOutputPowerSensor->startReading();
 }
 
 MainWindow::~MainWindow()
@@ -40,4 +61,29 @@ void MainWindow::updateSpeed(int newSpeed)
 void MainWindow::updateSOC(int newSOC)
 {
     ui->SOCValue->display(newSOC);
+}
+
+void MainWindow::updateTemp(int newTemp)
+{
+    ui->TempValue->display(newTemp);
+}
+
+void MainWindow::updateMPPTInputVoltage(int newVoltage)
+{
+    ui->InputVoltageValue->setText(QString::fromUtf8(std::to_string(newVoltage).append(" Volts")));
+}
+
+void MainWindow::updateMPPTOutputVoltage(int newVoltage)
+{
+    ui->OutputVoltageValue->setText(QString::fromUtf8(std::to_string(newVoltage).append(" Volts")));
+}
+
+void MainWindow::updateMPPTInputPower(int newPower)
+{
+    ui->InputPowerValueMPPT->setText(QString::fromUtf8(std::to_string(newPower).append(" Watts")));
+}
+
+void MainWindow::updateMPPTOutputPower(int newPower)
+{
+    ui->OutputPowerValueMPPT->setText(QString::fromUtf8(std::to_string(newPower).append(" Watts")));
 }
